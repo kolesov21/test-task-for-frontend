@@ -8,7 +8,7 @@ const store = useUsersStore();
 </script>
 
 <template>
-    <div class="max-w-[932px] flex flex-wrap gap-4">
+    <div class="w-[932px] flex flex-wrap gap-4">
         <div  v-for="user in store.users" :key="user.id">
             <User 
                 :userData="user"
