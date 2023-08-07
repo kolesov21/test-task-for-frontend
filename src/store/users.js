@@ -2,7 +2,16 @@ import { defineStore } from 'pinia'
 import {reactive} from 'vue';
 
 export const useUsersStore = defineStore('users', () => {
-  //let users = reactive();
+
+  const users = reactive ([]);
+
+  function fetchUserData(){
+    fetch('https://my-json-server.typicode.com/kolesov21/test-task-for-frontend/users')
+      .then((response) => response.json())
+      .then((data) => {
+        Object.assign(users, data)
+    })
+  }
 
   function deleteUser(userId){
     const index = users.findIndex(obj => obj.id === userId);
@@ -32,5 +41,5 @@ export const useUsersStore = defineStore('users', () => {
     }
   }
 
-  return {users, deleteUser, addNewUser, updateUserData};
+  return {users, deleteUser, addNewUser, updateUserData, fetchUserData};
 })
