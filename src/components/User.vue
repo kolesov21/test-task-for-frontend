@@ -21,21 +21,21 @@ function updateUserData(){
 </script>
 
 <template>
-    <b>Id:</b> {{userData.id}}
-    <b>Name:</b> {{userData.name}}
-    <b>Phone:</b> {{userData.phone}}
-    <b>Email:</b> {{userData.email}}
-    <b>Address:</b> {{userData.address}}
-    <button @click="showEdit = true">Update</button>
-    <button @click="store.deleteUser(userData.id)">Delete</button>
-
     <div v-if="showEdit === true">
-        <b>Name:</b> <input type="text" v-model="tempUser.name">
-        <b>Phone:</b> <input type="text" v-model="tempUser.phone">
-        <b>Email:</b> <input type="text" v-model="tempUser.email">
-        <b>Address:</b> <input type="text" v-model="tempUser.address">
-        <button @click="updateUserData">Save</button>
-        <button @click="showEdit = false">Close</button>
+        <b>Name:</b> <MyInput v-model="tempUser.name"/>
+        <b>Phone:</b> <MyInput v-model="tempUser.phone"/>
+        <b>Email:</b> <MyInput v-model="tempUser.email"/>
+        <b>Address:</b> <MyInput v-model="tempUser.address"/>
+        <MyButton @click="updateUserData">Save</MyButton>
+        <MyButton @click="showEdit = false">Close</MyButton>
+    </div>
+    <div v-else>
+        <b>Name:</b> {{userData.name}}
+        <b>Phone:</b> {{userData.phone}}
+        <b>Email:</b> {{userData.email}}
+        <b>Address:</b> {{userData.address}}
+        <MyButton @click="showEdit = true">Update</MyButton>
+        <MyButton @click="store.deleteUser(userData.id)">Delete</MyButton>
     </div>
 </template>
 
