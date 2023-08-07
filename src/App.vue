@@ -6,9 +6,11 @@ import UsersList from './components/UsersList.vue';
 
 </script>
 
-<template >
-  <Dashbord></Dashbord>
-  <UsersList></UsersList>
+<template>
+  <div>
+    <Dashbord></Dashbord>
+    <UsersList></UsersList>
+  </div>
 </template>
 
 <style scoped>

@@ -30,7 +30,7 @@ function addNewUser(){
 </script>
 
 <template>
-    <div class="newUser flex flex-col min-w-[300px] max-w-[300px] text-base font-normal leading-5 p-1.5 border border-black rounded bg-white">
+    <div class="flex flex-col min-w-[300px] max-w-[300px] text-base font-normal leading-5 p-1.5 border border-black rounded bg-white">
         <b>Name:</b> <MyInput v-model="newUser.name"/>
         <b>Phone:</b> <MyInput v-model="newUser.phone"/>
         <b>Email:</b> <MyInput v-model="newUser.email"/>
