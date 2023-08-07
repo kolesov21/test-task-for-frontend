@@ -1,10 +1,13 @@
 <script setup>
 import { ref, reactive } from 'vue'
 
+import { useAuth0 } from '@auth0/auth0-vue';
+
 import { useUsersStore } from '../store/users';
 const store = useUsersStore();
 
 const { userData } = defineProps(['userData']);
+
 
 let showEdit = ref(false);
 let tempUser = reactive ({
@@ -13,6 +16,9 @@ let tempUser = reactive ({
     email: userData.email,
     address: userData.address,
 });
+
+const auth0 = useAuth0();
+const isAuthenticated = auth0.isAuthenticated;
 
 function updateUserData(){
     store.updateUserData(tempUser, userData.id);
@@ -34,8 +40,8 @@ function updateUserData(){
         <b>Phone:</b> {{userData.phone}}
         <b>Email:</b> {{userData.email}}
         <b>Address:</b> {{userData.address}}
-        <MyButton @click="showEdit = true">Update</MyButton>
-        <MyButton @click="store.deleteUser(userData.id)">Delete</MyButton>
+        <MyButton @click="showEdit = true" v-if="isAuthenticated">Update</MyButton>
+        <MyButton @click="store.deleteUser(userData.id)" v-if="isAuthenticated">Delete</MyButton>
     </div>
 </template>
 
