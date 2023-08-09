@@ -1,44 +1,71 @@
 import { defineStore } from 'pinia'
-import {reactive} from 'vue';
+import { ref } from 'vue';
 
 export const useUsersStore = defineStore('users', () => {
 
-  const users = reactive ([]);
+  const users = ref ([]);
 
   function fetchUserData(){
-    fetch('https://my-json-server.typicode.com/kolesov21/test-task-for-frontend/users')
+    fetch('/api/users', {method: 'GET'})
       .then((response) => response.json())
       .then((data) => {
-        Object.assign(users, data)
-    })
+        users.value = data;
+      })
+      .catch((error) => {
+        console.error('Error fetching users: ', error)
+      })
   }
 
   function deleteUser(userId){
-    const index = users.findIndex(obj => obj.id === userId);
-    if (index !== -1) {
-      users.splice(index, 1);
-    }
+    fetch(`/api/users/${userId}`, {method: 'DELETE'})
+      .then((response) => {
+        if (response.ok) {
+          users.value = users.value.filter((user) => user._id != userId);
+        }
+      })
+      .catch((error)=>{
+        console.error('Error deleting user: ', error)
+      })
   }
 
   function addNewUser(newUser){
-    const newUserId = getLastObjectId(users) + 1;
-    newUser.id = newUserId;
-    users.push(newUser);
-
-    function getLastObjectId(arr){
-      if (arr.length === 0) {
-        return 0;
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    };
+    
+    fetch('/api/users/add', fetchOptions)
+      .then((response) => {
+      if (response.ok) {
+        fetchUserData();
       }
-      const lastObject = arr[arr.length - 1];
-      return lastObject.id;
-    }
+    })
+    .catch((error) => {
+      console.error('Error adding user: ', error)
+    })
   }
 
-  function updateUserData(tempUser, userId){
-    const indexToUpdate = users.findIndex(obj => obj.id === userId);
-    if (indexToUpdate !== -1) {
-      users[indexToUpdate] = { ...users[indexToUpdate], ...tempUser};
-    }
+  function updateUserData(updatedUser){
+    const fetchOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedUser)
+    };
+
+    fetch('/api/users/update', fetchOptions)
+      .then((response) => {
+        if (response.ok){
+          fetchUserData();
+        }
+      })
+      .catch((error) =>{
+        console.error('Error updateing user: ' + error);
+      })
   }
 
   return {users, deleteUser, addNewUser, updateUserData, fetchUserData};
