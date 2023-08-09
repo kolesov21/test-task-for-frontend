@@ -23,7 +23,6 @@ function logout(){
 <template>
     <div class="flex justify-between max-w-[932px] my-4">
         <div v-if="isAuthenticated">
-            <MyButton @click="store.fetchUserData();" >Update users list</MyButton>
             <MyButton @click="open = true">Add new user</MyButton>
             <MyModal v-if="open">
                 <NewUser @close="open=false"></NewUser>

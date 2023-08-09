@@ -7,7 +7,6 @@ import { useUsersStore } from '../store/users';
 const store = useUsersStore();
 
 const newUser = reactive ({
-    id: 0,
     name: '',
     phone: '',
     email: '',
@@ -18,7 +17,6 @@ function addNewUser(){
     const tempUser = {...newUser};
     store.addNewUser(tempUser);
 
-    newUser.id = 0;
     newUser.name = '';
     newUser.phone = '';
     newUser.email = '';
