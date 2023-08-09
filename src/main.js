@@ -4,9 +4,9 @@ import { createAuth0 } from '@auth0/auth0-vue';
 import './style.css'
 import App from './App.vue'
 
-import MyButton from './components/MyButton.vue'
-import MyInput from './components/MyInput.vue'
-import MyModal from './components/MyModal.vue'
+import MyButton from '@/components/common/MyButton.vue'
+import MyInput from '@/components/common/MyInput.vue'
+import MyModal from '@/components/common/MyModal.vue'
 
 const pinia = createPinia();
 

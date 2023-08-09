@@ -1,9 +1,9 @@
 <script setup>
 import {reactive} from 'vue';
+import { useUsersStore } from '@/store/users';
 
 const emit = defineEmits(['close'])
 
-import { useUsersStore } from '../store/users';
 const store = useUsersStore();
 
 const newUser = reactive ({

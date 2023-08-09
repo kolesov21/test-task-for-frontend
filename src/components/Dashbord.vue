@@ -1,11 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-import { useUsersStore } from '../store/users';
 import { useAuth0 } from '@auth0/auth0-vue';
 
-import NewUser from './NewUser.vue'
+import NewUser from './users/NewUser.vue'
 
-const store = useUsersStore();
 const open = ref(false);
 
 const auth0 = useAuth0();
@@ -38,5 +36,5 @@ function logout(){
     </div>
 </template>
 
-<style scoped lang="sass">
+<style scoped>
 </style>

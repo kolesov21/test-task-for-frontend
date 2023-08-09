@@ -1,13 +1,11 @@
 <script setup>
 import { ref, reactive } from 'vue'
-
 import { useAuth0 } from '@auth0/auth0-vue';
-
-import { useUsersStore } from '../store/users';
-const store = useUsersStore();
+import { useUsersStore } from '@/store/users';
 
 const { userData } = defineProps(['userData']);
 
+const store = useUsersStore();
 
 let showEdit = ref(false);
 let updatedUser = reactive ({

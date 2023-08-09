@@ -1,10 +1,9 @@
 <script setup>
 import { onMounted } from 'vue'
+import { useUsersStore } from '@/store/users';
 
 import Dashbord from './components/Dashbord.vue';
-import UsersList from './components/UsersList.vue';
-
-import { useUsersStore } from './store/users';
+import UsersList from './components/users/UsersList.vue';
 
 const store = useUsersStore();
 

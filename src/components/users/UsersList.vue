@@ -1,9 +1,8 @@
 <script setup>
+import { useUsersStore } from '@/store/users.js';
 import User from './User.vue'
-import { useUsersStore } from '../store/users';
 
 const store = useUsersStore();
-
 
 </script>
 
