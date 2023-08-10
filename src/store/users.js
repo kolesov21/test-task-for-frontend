@@ -6,7 +6,7 @@ export const useUsersStore = defineStore('users', () => {
   const users = ref ([]);
 
   function fetchUserData(){
-    fetch('/api/users', {method: 'GET'})
+    fetch('https://test-node-server-be1d.onrender.com/users', {method: 'GET'})
       .then((response) => response.json())
       .then((data) => {
         users.value = data;
@@ -17,7 +17,7 @@ export const useUsersStore = defineStore('users', () => {
   }
 
   function deleteUser(userId){
-    fetch(`/api/users/${userId}`, {method: 'DELETE'})
+    fetch(`https://test-node-server-be1d.onrender.com/users/${userId}`, {method: 'DELETE'})
       .then((response) => {
         if (response.ok) {
           users.value = users.value.filter((user) => user._id != userId);
@@ -37,7 +37,7 @@ export const useUsersStore = defineStore('users', () => {
       body: JSON.stringify(newUser)
     };
     
-    fetch('/api/users/add', fetchOptions)
+    fetch('https://test-node-server-be1d.onrender.com/users/add', fetchOptions)
       .then((response) => {
       if (response.ok) {
         fetchUserData();
@@ -57,7 +57,7 @@ export const useUsersStore = defineStore('users', () => {
       body: JSON.stringify(updatedUser)
     };
 
-    fetch('/api/users/update', fetchOptions)
+    fetch('https://test-node-server-be1d.onrender.com/users/update', fetchOptions)
       .then((response) => {
         if (response.ok){
           fetchUserData();

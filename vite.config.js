@@ -10,9 +10,4 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src')
     }
   },
-  server:{
-    proxy:{
-      '/api': 'https://test-node-server-be1d.onrender.com/'
-    }
-  }
 })
