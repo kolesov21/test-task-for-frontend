@@ -6,7 +6,7 @@ export const useUsersStore = defineStore('users', () => {
   const users = ref ([]);
 
   function fetchUserData(){
-    fetch('https://test-node-server-be1d.onrender.com/users', {method: 'GET'})
+    fetch('https://test-node-server-be1d.onrender.com/users/get', {method: 'GET'})
       .then((response) => response.json())
       .then((data) => {
         users.value = data;
@@ -17,7 +17,7 @@ export const useUsersStore = defineStore('users', () => {
   }
 
   function deleteUser(userId){
-    fetch(`https://test-node-server-be1d.onrender.com/users/${userId}`, {method: 'DELETE'})
+    fetch(`https://test-node-server-be1d.onrender.com/users/delete/${userId}`, {method: 'DELETE'})
       .then((response) => {
         if (response.ok) {
           users.value = users.value.filter((user) => user._id != userId);
