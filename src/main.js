@@ -17,7 +17,7 @@ createApp(App)
             domain: "dev-azueegiumdojwgid.eu.auth0.com",
             clientId: "5LlPAnRjraudw5iJikzZzfbS95riJK0N",
             authorizationParams: {
-                redirect_uri: 'http://localhost:5173/'
+                redirect_uri: 'https://test-task-for-frontend.vercel.app/'
             }
         }) 
     )
